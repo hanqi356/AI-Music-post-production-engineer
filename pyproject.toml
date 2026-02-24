@@ -1,0 +1,96 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-music-post-production"
+version = "1.0.0"
+description = "AI音乐后期工程师 - 专业的音频处理软件"
+readme = "README.md"
+authors = [{name = "AI Music Team", email = "team@aimusic.example.com"}]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Multimedia :: Sound/Audio :: Analysis",
+    "Topic :: Multimedia :: Sound/Audio :: Editors",
+]
+keywords = ["audio", "processing", "pitch", "correction", "equalizer", "mastering"]
+dependencies = [
+    "numpy>=1.21.0",
+    "scipy>=1.7.0",
+    "librosa>=0.9.0",
+    "sounddevice>=0.4.0",
+    "matplotlib>=3.3.0",
+    "PyQt5>=5.15.0",
+    "pydub>=0.25.0",
+    "praat-parselmouth>=0.4.0",
+    "pyworld>=0.3.0",
+    "resampy>=0.2.2",
+    "pysoundfile>=0.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "black>=21.0",
+    "flake8>=3.8",
+]
+macos = [
+    "py2app>=0.28.0",
+]
+
+[project.scripts]
+ai-music-tuner = "main:main"
+
+[project.gui-scripts]
+ai-music-tuner-gui = "main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "main*"]
+
+[tool.py2app]
+script = "main.py"
+bundle_identifier = "com.ai-music-post-production.music-tuner"
+iconfile = "icon.icns"  # 需要提供图标文件
+qt_plugins = ["platforms", "imageformats", "accessible"]
+includes = [
+    "sip",
+    "PyQt5",
+    "PyQt5.QtCore",
+    "PyQt5.QtGui",
+    "PyQt5.QtWidgets",
+    "numpy",
+    "scipy",
+    "librosa",
+    "sounddevice",
+    "matplotlib",
+    "pydub",
+    "parsecelmouth",
+    "pyworld",
+    "resampy",
+    "pysoundfile",
+]
+packages = [
+    "src",
+    "src.audio_processing",
+    "src.effects",
+    "src.ui",
+]
+excludes = [
+    "tkinter",
+    "unittest",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]

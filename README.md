@@ -1,4 +1,3 @@
-# AI-Music-post-production-engineer
 # AI音乐后期工程师 - 音乐修音软件
 
 一款专业的音乐修音软件，支持音准调校、EQ调节、录音工程和母带制作功能。
